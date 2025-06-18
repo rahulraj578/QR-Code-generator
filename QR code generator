@@ -1,0 +1,25 @@
+pip install qrcode[pil]
+import qrcode
+from PIL import Image
+qr= qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_H,
+    box_size=10,
+    border=4,)
+qr.add_data("https://www.instagram.com/accounts/login/?hl=en")
+qr.make(fit=True)
+
+# fill_rgb = (0, 128, 255)      # Blue-ish color
+# back_rgb = (255, 255, 255)    # White
+
+# img = qr.make_image(fill_color=fill_rgb, back_color=back_rgb)
+
+# Create the QR image with RGB fill and background colors
+img = qr.make_image(fill_color=(0, 200, 0), back_color=(255, 255, 255))
+
+# Convert image to RGB explicitly (if needed)
+img_rgb = img.convert("RGB")
+
+
+img.show()
+img.save("custom_qr_rgb.png")
